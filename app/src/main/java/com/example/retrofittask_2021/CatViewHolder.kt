@@ -18,5 +18,9 @@ class CatViewHolder(
         binding.catItemIv.load(catPhoto.imgSrcUrl) {
             placeholder(R.drawable.ic_baseline_image_24)
         }
+
+        binding.catItemIv.setOnClickListener {
+            listener.openDetail(catPhoto)
+        }
     }
 }
