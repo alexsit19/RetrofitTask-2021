@@ -4,6 +4,10 @@ import com.example.retrofittask_2021.network.CatPhoto
 
 interface CatListener {
 
-    fun openDetail(catPhoto: CatPhoto)
+    fun openDetailFragment(catPhoto: CatPhoto)
+
+    fun openListFragment()
+
+    fun savePicture(catPhoto: CatPhoto)
 
 }

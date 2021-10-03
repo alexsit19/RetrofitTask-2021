@@ -1,9 +1,20 @@
 package com.example.retrofittask_2021
 
+import android.content.ContentValues
+import android.graphics.Bitmap
+import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
+import android.util.Log
+import android.widget.Toast
 import com.example.retrofittask_2021.databinding.ActivityMainBinding
 import com.example.retrofittask_2021.network.CatPhoto
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
 
 class MainActivity : AppCompatActivity(), CatListener {
 
@@ -22,9 +33,53 @@ class MainActivity : AppCompatActivity(), CatListener {
 
     }
 
-    override fun openDetail(catPhoto: CatPhoto) {
+    override fun openDetailFragment(catPhoto: CatPhoto) {
         supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.flip_in, R.anim.flip_out)
             .replace(R.id.place_for_fragment, CatDetailFragment(catPhoto))
             .commit()
     }
+
+    override fun openListFragment() {
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.flip_in_back, R.anim.flip_out_back)
+            .replace(R.id.place_for_fragment, CatListFragment(), "catlistfragment")
+            .commit()
+    }
+
+    override fun savePicture(catPhoto: CatPhoto) {
+
+    }
+
+    fun saveImageToStorage(bitmap: Bitmap) {
+        val filename = "${System.currentTimeMillis()}.jpg"
+
+        var fos: OutputStream? = null
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            this.contentResolver?.also { resolver ->
+                val contentValues = ContentValues().apply {
+                    put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
+                    put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg")
+                    put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
+                }
+
+                val imageUri: Uri? =
+                    resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+
+                fos = imageUri?.let { resolver.openOutputStream(it) }
+            }
+        } else {
+            val imagesDir =
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+            val image = File(imagesDir, filename)
+            fos = FileOutputStream(image)
+        }
+
+        fos?.use {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
+            Toast.makeText(this, "image saved", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }

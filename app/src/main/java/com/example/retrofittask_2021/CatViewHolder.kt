@@ -20,7 +20,7 @@ class CatViewHolder(
         }
 
         binding.catItemIv.setOnClickListener {
-            listener.openDetail(catPhoto)
+            listener.openDetailFragment(catPhoto)
         }
     }
 }
