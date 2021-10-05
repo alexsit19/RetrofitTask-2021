@@ -28,8 +28,10 @@ class MainActivity : AppCompatActivity(), CatListener {
         setContentView(binding.root)
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.place_for_fragment, CatListFragment(), "catlistfragment")
+            .add(R.id.place_for_fragment, CatListFragment(), "catlistfragment")
+            //.addToBackStack(null)
             .commit()
+
 
     }
 
@@ -37,14 +39,20 @@ class MainActivity : AppCompatActivity(), CatListener {
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.flip_in, R.anim.flip_out)
             .replace(R.id.place_for_fragment, CatDetailFragment(catPhoto))
+            .addToBackStack(null)
             .commit()
     }
 
     override fun openListFragment() {
-        supportFragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.flip_in_back, R.anim.flip_out_back)
-            .replace(R.id.place_for_fragment, CatListFragment(), "catlistfragment")
-            .commit()
+//        supportFragmentManager.beginTransaction()
+//            .setCustomAnimations(R.anim.flip_in_back, R.anim.flip_out_back)
+//            .replace(R.id.place_for_fragment, CatListFragment(), "catlistfragment")
+//            //.addToBackStack(null)
+//            .commit()
+
+        supportFragmentManager.popBackStack()
+
+
     }
 
     override fun savePicture(catPhoto: CatPhoto) {
@@ -80,6 +88,15 @@ class MainActivity : AppCompatActivity(), CatListener {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
             Toast.makeText(this, "image saved", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onBackPressed() {
+
+        //supportFragmentManager.popBackStack()
+        openListFragment()
+        //supportFragmentManager.popBackStack()
+
+
     }
 
 }

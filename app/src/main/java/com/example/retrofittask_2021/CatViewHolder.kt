@@ -1,6 +1,7 @@
 package com.example.retrofittask_2021
 
 import android.content.Context
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -11,15 +12,20 @@ import com.example.retrofittask_2021.network.CatPhoto
 class CatViewHolder(
     private val binding: CatItemBinding,
     private val listener: CatListener,
-    private val context: Context
+    private val context: Context,
+
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(catPhoto: CatPhoto) {
+    private var itemPosition: Int? = null
+
+    fun bind(catPhoto: CatPhoto, position: Int) {
         binding.catItemIv.load(catPhoto.imgSrcUrl) {
+            itemPosition = position
             placeholder(R.drawable.ic_baseline_image_24)
         }
 
         binding.catItemIv.setOnClickListener {
+            Log.d("DEBUG", "Position: $itemPosition")
             listener.openDetailFragment(catPhoto)
         }
     }

@@ -41,8 +41,8 @@ interface CatApiService {
     suspend fun getPhotos(
         @Query("limit") limit: Int,
         @Query("page") page: Int,
-        @Query("order") order: String,
-        @Query("size") size: String
+        @Query("order") order: String = "asc",
+        @Query("size") size: String = "med"
     ): List<CatPhoto>
 }
 
