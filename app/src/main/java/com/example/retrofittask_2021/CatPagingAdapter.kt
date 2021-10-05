@@ -21,10 +21,8 @@ class CatPagingAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = CatItemBinding.inflate(layoutInflater, parent, false)
-        return CatViewHolder(binding, listener, parent.context)
+        return CatViewHolder(binding, listener)
     }
-
-
 }
 
 class DiffUtilCallBack: DiffUtil.ItemCallback<CatPhoto>() {

@@ -8,6 +8,4 @@ interface CatListener {
 
     fun openListFragment()
 
-    fun savePicture(catPhoto: CatPhoto)
-
 }

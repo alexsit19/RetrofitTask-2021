@@ -21,7 +21,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 
-class CatDetailFragment(val catPhoto: CatPhoto) : Fragment() {
+class CatDetailFragment(private val catPhoto: CatPhoto) : Fragment() {
 
     private var _binding: CatDetailFragmentBinding? = null
     private val binding get() = requireNotNull(_binding)
@@ -45,7 +45,7 @@ class CatDetailFragment(val catPhoto: CatPhoto) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = CatDetailFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -60,12 +60,11 @@ class CatDetailFragment(val catPhoto: CatPhoto) : Fragment() {
         }
 
         binding.buttonSaveIv.setOnClickListener {
-            listener?.savePicture(catPhoto)
             saveImageToStorage()
         }
     }
 
-    fun saveImageToStorage() {
+    private fun saveImageToStorage() {
         val bitmap: Bitmap = binding.detailIv.drawable.toBitmap()
         val filename = "${System.currentTimeMillis()}.jpg"
 

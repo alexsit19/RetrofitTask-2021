@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.widget.Toast
 import com.example.retrofittask_2021.databinding.ActivityMainBinding
 import com.example.retrofittask_2021.network.CatPhoto
@@ -29,33 +28,24 @@ class MainActivity : AppCompatActivity(), CatListener {
 
         supportFragmentManager.beginTransaction()
             .add(R.id.place_for_fragment, CatListFragment(), "catlistfragment")
-            //.addToBackStack(null)
             .commit()
-
-
     }
 
     override fun openDetailFragment(catPhoto: CatPhoto) {
         supportFragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.flip_in, R.anim.flip_out)
+            .setCustomAnimations(
+                R.anim.card_flip_right_in,
+                R.anim.card_flip_right_out,
+                R.anim.card_flip_left_in,
+                R.anim.card_flip_left_out
+            )
             .replace(R.id.place_for_fragment, CatDetailFragment(catPhoto))
             .addToBackStack(null)
             .commit()
     }
 
     override fun openListFragment() {
-//        supportFragmentManager.beginTransaction()
-//            .setCustomAnimations(R.anim.flip_in_back, R.anim.flip_out_back)
-//            .replace(R.id.place_for_fragment, CatListFragment(), "catlistfragment")
-//            //.addToBackStack(null)
-//            .commit()
-
         supportFragmentManager.popBackStack()
-
-
-    }
-
-    override fun savePicture(catPhoto: CatPhoto) {
 
     }
 
@@ -91,12 +81,7 @@ class MainActivity : AppCompatActivity(), CatListener {
     }
 
     override fun onBackPressed() {
-
-        //supportFragmentManager.popBackStack()
         openListFragment()
-        //supportFragmentManager.popBackStack()
-
 
     }
-
 }

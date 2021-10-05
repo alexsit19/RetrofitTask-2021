@@ -12,7 +12,6 @@ import com.example.retrofittask_2021.network.CatPhoto
 class CatViewHolder(
     private val binding: CatItemBinding,
     private val listener: CatListener,
-    private val context: Context,
 
 ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -25,7 +24,6 @@ class CatViewHolder(
         }
 
         binding.catItemIv.setOnClickListener {
-            Log.d("DEBUG", "Position: $itemPosition")
             listener.openDetailFragment(catPhoto)
         }
     }
