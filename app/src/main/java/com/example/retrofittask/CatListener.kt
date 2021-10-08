@@ -1,6 +1,6 @@
-package com.example.retrofittask_2021
+package com.example.retrofittask
 
-import com.example.retrofittask_2021.network.CatPhoto
+import com.example.retrofittask.network.CatPhoto
 
 interface CatListener {
 

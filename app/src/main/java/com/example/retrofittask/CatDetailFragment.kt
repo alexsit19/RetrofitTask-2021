@@ -1,4 +1,4 @@
-package com.example.retrofittask_2021
+package com.example.retrofittask
 
 import android.content.ContentValues
 import android.content.Context
@@ -16,7 +16,7 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import coil.load
 import com.example.retrofittask_2021.databinding.CatDetailFragmentBinding
-import com.example.retrofittask_2021.network.CatPhoto
+import com.example.retrofittask.network.CatPhoto
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -92,8 +92,12 @@ class CatDetailFragment(private val catPhoto: CatPhoto) : Fragment() {
         }
 
         fos?.use {
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, IMAGE_QUALITY, it)
             Toast.makeText(context, "image saved", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    companion object {
+        private const val IMAGE_QUALITY = 100
     }
 }

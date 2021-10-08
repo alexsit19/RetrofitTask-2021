@@ -1,4 +1,4 @@
-package com.example.retrofittask_2021.network
+package com.example.retrofittask.network
 
 import com.squareup.moshi.Json
 

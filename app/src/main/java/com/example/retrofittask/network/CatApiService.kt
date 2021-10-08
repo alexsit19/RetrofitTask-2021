@@ -1,4 +1,4 @@
-package com.example.retrofittask_2021.network
+package com.example.retrofittask.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -13,11 +13,12 @@ import java.util.concurrent.TimeUnit
 
 private const val BASE_URL = "https://api.thecatapi.com/v1/"
 private const val API_KEY = "419277a5-2dbe-438a-a5f8-1b4e2a448e8d"
+private const val TIMEOUT = 15L
 private val interceptor = HttpLoggingInterceptor()
 val client = OkHttpClient.Builder()
     .addInterceptor(interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC))
-    .connectTimeout(15, TimeUnit.SECONDS)
-    .readTimeout(15, TimeUnit.SECONDS)
+    .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
+    .readTimeout(TIMEOUT, TimeUnit.SECONDS)
     .build()
 
 private val moshi = Moshi.Builder()

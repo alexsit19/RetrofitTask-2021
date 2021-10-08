@@ -1,13 +1,14 @@
-package com.example.retrofittask_2021
+package com.example.retrofittask
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.retrofittask_2021.network.CatApiService
-import com.example.retrofittask_2021.network.CatPhoto
+import com.example.retrofittask.network.CatApiService
+import com.example.retrofittask.network.CatPhoto
+import java.net.ConnectException
 
 private const val CAT_API_STARTING_PAGE_INDEX = 0
+private const val PAGE_SIZE = 20
 
 class CatImagePagingService(private val catApiService: CatApiService) :
     PagingSource<Int, CatPhoto>() {
@@ -16,7 +17,7 @@ class CatImagePagingService(private val catApiService: CatApiService) :
 
         return try {
             val pageIndex = params.key ?: CAT_API_STARTING_PAGE_INDEX
-            val pageSize = 20
+            val pageSize = PAGE_SIZE
 
             val catsList = catApiService.getPhotos(page = pageIndex, limit = pageSize)
             if (catsList.isNotEmpty()) {
@@ -26,9 +27,8 @@ class CatImagePagingService(private val catApiService: CatApiService) :
             } else {
                 LoadResult.Page(emptyList(), null, null)
             }
-        } catch (e: Exception) {
-            Log.d("DEBUG", "MESSAGE ${e.message}")
-            LoadResult.Error(e)
+        } catch (error: ConnectException) {
+            LoadResult.Error(error)
         }
     }
 

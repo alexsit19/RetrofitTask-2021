@@ -1,11 +1,11 @@
-package com.example.retrofittask_2021
+package com.example.retrofittask
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.example.retrofittask_2021.databinding.CatItemBinding
-import com.example.retrofittask_2021.network.CatPhoto
+import com.example.retrofittask.network.CatPhoto
 
 class CatPagingAdapter(
     private val listener: CatListener

@@ -1,9 +1,10 @@
-package com.example.retrofittask_2021
+package com.example.retrofittask
 
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.retrofittask_2021.R
 import com.example.retrofittask_2021.databinding.CatItemBinding
-import com.example.retrofittask_2021.network.CatPhoto
+import com.example.retrofittask.network.CatPhoto
 
 class CatViewHolder(
     private val binding: CatItemBinding,

@@ -1,4 +1,4 @@
-package com.example.retrofittask_2021
+package com.example.retrofittask
 
 import android.content.ContentValues
 import android.graphics.Bitmap
@@ -9,8 +9,9 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.retrofittask_2021.R
 import com.example.retrofittask_2021.databinding.ActivityMainBinding
-import com.example.retrofittask_2021.network.CatPhoto
+import com.example.retrofittask.network.CatPhoto
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
@@ -74,12 +75,16 @@ class MainActivity : AppCompatActivity(), CatListener {
         }
 
         fos?.use {
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, IMAGE_QUALITY, it)
             Toast.makeText(this, "image saved", Toast.LENGTH_SHORT).show()
         }
     }
 
     override fun onBackPressed() {
         openListFragment()
+    }
+
+    companion object {
+        private const val IMAGE_QUALITY = 100
     }
 }
