@@ -6,6 +6,7 @@ import androidx.paging.PagingState
 import com.example.retrofittask.network.CatApiService
 import com.example.retrofittask.network.CatPhoto
 import java.net.ConnectException
+import java.net.UnknownHostException
 
 private const val CAT_API_STARTING_PAGE_INDEX = 0
 private const val PAGE_SIZE = 20
@@ -27,6 +28,8 @@ class CatImagePagingService(private val catApiService: CatApiService) :
             } else {
                 LoadResult.Page(emptyList(), null, null)
             }
+        } catch (error: UnknownHostException) {
+            LoadResult.Error(error)
         } catch (error: ConnectException) {
             LoadResult.Error(error)
         }
