@@ -9,7 +9,7 @@ import com.example.retrofittask_2021.network.CatPhoto
 
 class CatPagingAdapter(
     private val listener: CatListener
-    ): PagingDataAdapter<CatPhoto, CatViewHolder>(DiffUtilCallBack()) {
+) : PagingDataAdapter<CatPhoto, CatViewHolder>(DiffUtilCallBack()) {
 
     override fun onBindViewHolder(holder: CatViewHolder, position: Int) {
         val catPhoto = getItem(position)
@@ -25,7 +25,7 @@ class CatPagingAdapter(
     }
 }
 
-class DiffUtilCallBack: DiffUtil.ItemCallback<CatPhoto>() {
+class DiffUtilCallBack : DiffUtil.ItemCallback<CatPhoto>() {
 
     override fun areItemsTheSame(oldItem: CatPhoto, newItem: CatPhoto): Boolean {
         return oldItem.id == newItem.id

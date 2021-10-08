@@ -8,12 +8,12 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
+import androidx.fragment.app.Fragment
 import coil.load
 import com.example.retrofittask_2021.databinding.CatDetailFragmentBinding
 import com.example.retrofittask_2021.network.CatPhoto
@@ -43,7 +43,8 @@ class CatDetailFragment(private val catPhoto: CatPhoto) : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = CatDetailFragmentBinding.inflate(inflater, container, false)
@@ -95,5 +96,4 @@ class CatDetailFragment(private val catPhoto: CatPhoto) : Fragment() {
             Toast.makeText(context, "image saved", Toast.LENGTH_SHORT).show()
         }
     }
-
 }

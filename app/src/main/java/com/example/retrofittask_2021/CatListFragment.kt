@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.retrofittask_2021.databinding.CatListFragmentBinding
 import kotlinx.coroutines.flow.collectLatest
 
-class CatListFragment: Fragment() {
+class CatListFragment : Fragment() {
 
     private var _binding: CatListFragmentBinding? = null
     private val binding: CatListFragmentBinding get() = requireNotNull(_binding)
@@ -55,9 +55,8 @@ class CatListFragment: Fragment() {
         binding.recycler.layoutManager = LinearLayoutManager(requireActivity())
         binding.recycler.adapter = catPagingAdapter
     }
-
     override fun onDestroy() {
         _binding = null
-         super.onDestroy()
+        super.onDestroy()
     }
 }

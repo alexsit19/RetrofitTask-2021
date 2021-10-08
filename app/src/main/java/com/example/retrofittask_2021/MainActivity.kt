@@ -4,11 +4,11 @@ import android.content.ContentValues
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.retrofittask_2021.databinding.ActivityMainBinding
 import com.example.retrofittask_2021.network.CatPhoto
 import java.io.File
@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity(), CatListener {
 
     override fun openListFragment() {
         supportFragmentManager.popBackStack()
-
     }
 
     fun saveImageToStorage(bitmap: Bitmap) {
@@ -82,6 +81,5 @@ class MainActivity : AppCompatActivity(), CatListener {
 
     override fun onBackPressed() {
         openListFragment()
-
     }
 }

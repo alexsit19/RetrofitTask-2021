@@ -7,5 +7,4 @@ interface CatListener {
     fun openDetailFragment(catPhoto: CatPhoto)
 
     fun openListFragment()
-
 }
