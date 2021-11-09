@@ -22,7 +22,7 @@ class CatListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        listener = activity as MainActivity
+        listener = activity as CatListener
     }
 
     override fun onDetach() {

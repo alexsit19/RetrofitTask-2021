@@ -14,12 +14,12 @@ class CatViewHolder(
     private var itemPosition: Int? = null
 
     fun bind(catPhoto: CatPhoto, position: Int) {
-        binding.catItemIv.load(catPhoto.imgSrcUrl) {
+        binding.catItemImageView.load(catPhoto.imgSrcUrl) {
             itemPosition = position
             placeholder(R.drawable.ic_baseline_image_24)
         }
 
-        binding.catItemIv.setOnClickListener {
+        binding.catItemImageView.setOnClickListener {
             listener.openDetailFragment(catPhoto)
         }
     }

@@ -14,22 +14,6 @@ import java.util.concurrent.TimeUnit
 private const val BASE_URL = "https://api.thecatapi.com/v1/"
 private const val API_KEY = "419277a5-2dbe-438a-a5f8-1b4e2a448e8d"
 private const val TIMEOUT = 15L
-private val interceptor = HttpLoggingInterceptor()
-val client = OkHttpClient.Builder()
-    .addInterceptor(interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC))
-    .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
-    .readTimeout(TIMEOUT, TimeUnit.SECONDS)
-    .build()
-
-private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
-
-private val retrofit = Retrofit.Builder()
-    .baseUrl(BASE_URL)
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .client(client)
-    .build()
 
 interface CatApiService {
     @Headers(
@@ -47,6 +31,23 @@ interface CatApiService {
 }
 
 object CatApi {
+
+    private val interceptor = HttpLoggingInterceptor()
+    private val client = OkHttpClient.Builder()
+        .addInterceptor(interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC))
+        .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
+        .readTimeout(TIMEOUT, TimeUnit.SECONDS)
+        .build()
+    private val moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
+
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .client(client)
+        .build()
+
     val retrofitService: CatApiService by lazy {
         retrofit.create(CatApiService::class.java)
     }

@@ -29,7 +29,7 @@ class CatDetailFragment(private val catPhoto: CatPhoto) : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        listener = activity as MainActivity
+        listener = activity as CatListener
     }
 
     override fun onDetach() {
@@ -54,19 +54,19 @@ class CatDetailFragment(private val catPhoto: CatPhoto) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.detailIv.load(catPhoto.imgSrcUrl)
+        binding.detailImageView.load(catPhoto.imgSrcUrl)
 
-        binding.buttonBackIv.setOnClickListener {
+        binding.buttonBackImageView.setOnClickListener {
             listener?.openListFragment()
         }
 
-        binding.buttonSaveIv.setOnClickListener {
+        binding.buttonSaveImageView.setOnClickListener {
             saveImageToStorage()
         }
     }
 
     private fun saveImageToStorage() {
-        val bitmap: Bitmap = binding.detailIv.drawable.toBitmap()
+        val bitmap: Bitmap = binding.detailImageView.drawable.toBitmap()
         val filename = "${System.currentTimeMillis()}.jpg"
 
         var fos: OutputStream? = null

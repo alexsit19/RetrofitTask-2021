@@ -18,14 +18,13 @@ import java.io.OutputStream
 
 class MainActivity : AppCompatActivity(), CatListener {
 
-    private var _binding: ActivityMainBinding? = null
-    private val binding: ActivityMainBinding get() = requireNotNull(_binding)
+    private var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
 
-        setContentView(binding.root)
+        setContentView(binding?.root)
 
         supportFragmentManager.beginTransaction()
             .add(R.id.place_for_fragment, CatListFragment(), "catlistfragment")

@@ -12,10 +12,10 @@ import kotlinx.coroutines.flow.Flow
 
 class MainViewModel : ViewModel() {
 
-    fun getPagingCatPhotos(): Flow<PagingData<CatPhoto>> {
-        return Pager(
+    fun getPagingCatPhotos(): Flow<PagingData<CatPhoto>> =
+         Pager(
             config = PagingConfig(pageSize = 30, enablePlaceholders = false),
             pagingSourceFactory = { CatImagePagingService(CatApi.retrofitService) }
         ).flow.cachedIn(viewModelScope)
-    }
+
 }

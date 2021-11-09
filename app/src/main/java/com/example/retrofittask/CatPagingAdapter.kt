@@ -12,10 +12,7 @@ class CatPagingAdapter(
 ) : PagingDataAdapter<CatPhoto, CatViewHolder>(DiffUtilCallBack()) {
 
     override fun onBindViewHolder(holder: CatViewHolder, position: Int) {
-        val catPhoto = getItem(position)
-        if (catPhoto != null) {
-            holder.bind(catPhoto, position)
-        }
+        getItem(position)?.let{ holder.bind(it, position) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatViewHolder {
